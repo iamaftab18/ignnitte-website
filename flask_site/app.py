@@ -147,6 +147,9 @@ def init_db():
     con.close()
 
 
+init_db()
+
+
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
@@ -534,6 +537,5 @@ def export_contacts():
 
 
 if __name__ == "__main__":
-    init_db()
     port = int(os.getenv("PORT", "5000"))
     app.run(host="0.0.0.0", port=port, debug=os.getenv("FLASK_DEBUG") == "1")
