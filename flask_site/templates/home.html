@@ -294,33 +294,53 @@
 </section>
 
 <!-- ===================== INTERN TESTIMONIALS ===================== -->
-<section class="border-t border-line bg-surface px-5 py-28 lg:px-10">
+<section class="border-t border-line bg-gradient-to-b from-sky-50 via-white to-sky-50 px-5 py-28 lg:px-10">
   <div class="mx-auto max-w-[1400px]">
     <div class="text-center" data-reveal>
-      <p class="eyebrow">Intern Testimonials</p>
-      <h2 class="display mt-6 text-4xl sm:text-5xl">What our interns say</h2>
+      <p class="text-[0.72rem] font-medium uppercase tracking-[0.28em] text-sky-600/70">Intern Testimonials</p>
+      <h2 class="display mt-6 text-4xl text-neutral-900 sm:text-5xl">What our interns say</h2>
     </div>
-    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+    <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-reveal>
       {% set quotes = [
-        ["Suddhanshu Mallik","The internship helped me understand how Industry 4.0 concepts are used in real projects."],
-        ["Shikha Shetty","Hands-on tasks made automation, data, and IoT much easier to connect with practical work."],
-        ["Janhavi Kulkarni","Mentor guidance and project practice gave me more confidence to work on industrial systems."],
-        ["Digvijay Bangale","The training was focused, practical, and useful for building an industry-ready mindset."],
-        ["Ramith R. Shetty","I learned how to approach real problems with structured thinking and modern technology tools."],
-        ["","Ready to start your own Industry 4.0 journey with us?"]
+        ["Suddhanshu Mallik","SM","The internship helped me understand how Industry 4.0 concepts are used in real projects."],
+        ["Shikha Shetty","SS","Hands-on tasks made automation, data, and IoT much easier to connect with practical work."],
+        ["Janhavi Kulkarni","JK","Mentor guidance and project practice gave me more confidence to work on industrial systems."],
+        ["Digvijay Bangale","DB","The training was focused, practical, and useful for building an industry-ready mindset."],
+        ["Ramith R. Shetty","RS","I learned how to approach real problems with structured thinking and modern technology tools."],
+        ["","","Ready to start your own Industry 4.0 journey with us?"]
       ] %}
       {% for q in quotes %}
         {% if q[0] %}
-        <figure class="bg-surface p-8">
-          <blockquote class="text-[15px] leading-7 text-fg/85">“{{ q[1] }}”</blockquote>
-          <figcaption class="mt-6"><span class="font-semibold">{{ q[0] }}</span><span class="mt-1 block text-xs uppercase tracking-wide text-fg/50">Industry 4.0 Intern</span></figcaption>
+        <figure class="li-post">
+          <div class="li-post__header">
+            <span class="li-post__avatar">{{ q[1] }}</span>
+            <div>
+              <figcaption class="li-post__name">{{ q[0] }}</figcaption>
+              <p class="li-post__role">Industry 4.0 Intern · Ignnitte</p>
+            </div>
+          </div>
+          <blockquote class="li-post__quote">{{ q[2] }}</blockquote>
+          <div class="li-post__footer">
+            <span class="li-post__stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v11M3 10h4v11H3zM7 10l4.5-7.5c.4-.7 1.4-.9 2-.3.5.4.7 1.1.5 1.7L12.5 9H20a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 18.7 21H7"/></svg>
+              Insightful
+            </span>
+            <span class="li-post__stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              Discuss
+            </span>
+            <span class="li-post__stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+              Share
+            </span>
+          </div>
         </figure>
         {% else %}
-        <div class="flex flex-col justify-between bg-invbg p-8 text-invfg">
-          <p class="display text-2xl leading-snug">{{ q[1] }}</p>
-          <a href="/register" class="neura-box-link on-light mt-8">
+        <div class="li-post li-post--cta">
+          <p class="display text-2xl leading-snug">{{ q[2] }}</p>
+          <a href="/register" class="li-post__cta-link mt-8">
             <span>Register now</span>
-            <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
         {% endif %}

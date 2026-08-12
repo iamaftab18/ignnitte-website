@@ -542,6 +542,101 @@ html.light .aurora-blob {
   .stat-neon, .stat-neon__sheen, .stat-neon__corner, .stat-neon__value { transition: none; }
 }
 
+/* ---------- LinkedIn-style testimonial post ---------- */
+.li-post {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  border: 1px solid rgba(2, 6, 23, 0.08);
+  background: #ffffff;
+  padding: 1.6rem;
+  box-shadow: 0 1px 2px rgba(2, 6, 23, 0.04), 0 14px 32px -20px rgba(2, 6, 23, 0.16);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.li-post:hover {
+  transform: translateY(-5px);
+  border-color: rgba(14, 165, 233, 0.35);
+  box-shadow: 0 1px 2px rgba(2, 6, 23, 0.04), 0 24px 48px -20px rgba(14, 165, 233, 0.4);
+}
+.li-post__header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.li-post__avatar {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  color: #fff;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 18px -6px rgba(14, 165, 233, 0.6);
+}
+.li-post__name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+}
+.li-post__role {
+  margin-top: 0.15rem;
+  font-size: 0.76rem;
+  color: #64748b;
+}
+.li-post__quote {
+  margin-top: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #1e293b;
+  flex: 1;
+}
+.li-post__footer {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin-top: 1.4rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(2, 6, 23, 0.08);
+}
+.li-post__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #64748b;
+  transition: color 0.25s ease;
+}
+.li-post__stat svg { width: 15px; height: 15px; }
+.li-post:hover .li-post__stat { color: #0284c7; }
+
+.li-post--cta {
+  justify-content: space-between;
+  background: linear-gradient(135deg, #0c4a6e, #0369a1 55%, #0ea5e9);
+  border-color: transparent;
+  color: #fff;
+}
+.li-post--cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 26px 52px -18px rgba(14, 165, 233, 0.55);
+}
+.li-post__cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 700;
+  color: #fff;
+  transition: gap 0.25s ease;
+}
+.li-post__cta-link:hover { gap: 0.85rem; }
+
 /* ---------- Utilities ---------- */
 .hairline { height: 1px; background: var(--line); }
 .text-balance { text-wrap: balance; }
