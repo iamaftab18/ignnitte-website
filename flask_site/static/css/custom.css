@@ -312,8 +312,8 @@ html.light .theme-toggle .icon-moon { display: none; }
   flex: none;
   width: min(300px, 76vw);
   padding: 2.25rem 1.75rem;
-  border: 1px solid var(--line);
-  background: rgb(var(--c-surface));
+  border: 1px solid rgba(167, 139, 250, 0.16);
+  background: rgba(167, 139, 250, 0.04);
   text-align: center;
   transform: scale(0.8);
   opacity: 0.4;
@@ -389,8 +389,9 @@ html.light .theme-toggle .icon-moon { display: none; }
   transform: scale(1.14);
   opacity: 1;
   filter: none;
-  border-color: rgb(var(--c-fg) / 0.35);
-  background: rgb(var(--c-fg) / 0.04);
+  border-color: rgba(167, 139, 250, 0.55);
+  background: rgba(167, 139, 250, 0.08);
+  box-shadow: 0 20px 45px -15px rgba(124, 58, 237, 0.5);
 }
 .mentor-card.is-center .mentor-card__bio {
   max-height: 12rem;
