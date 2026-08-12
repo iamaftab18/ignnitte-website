@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Events | Ignnitte Industry 4.0{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-24 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-25"></div>
+  <div class="relative mx-auto max-w-[1100px] text-center" data-reveal>
+    <p class="eyebrow">Workshops &amp; Camps</p>
+    <h1 class="display mt-6 text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">Our events</h1>
+    <p class="mx-auto mt-8 max-w-2xl text-lg text-fog">
+      Workshops, training camps and outreach programs delivered across colleges and schools.
+    </p>
+  </div>
+</section>
+
+<section class="bg-surface px-5 py-24 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {% set events = [
+        ["DKTE PLC-IoT Integration Workshop","DKTE.jpeg"],
+        ["IoT Workshop at Cyrus Poonawala School","CyrusPoonawala.jpeg"],
+        ["RPA Workshop at Indira College","Indira.jpg"],
+        ["Robotics Summer Camp","summer_batch.png"],
+        ["Python Programming Batches","python.png"]
+      ] %}
+      {% for e in events %}
+      <article class="group bg-surface">
+        <div class="overflow-hidden">
+          <img src="/assets/images/{{ e[1] }}" alt="{{ e[0] }}" class="h-64 w-full object-cover transition duration-700 group-hover:scale-105" />
+        </div>
+        <div class="p-6"><h3 class="text-lg font-semibold">{{ e[0] }}</h3></div>
+      </article>
+      {% endfor %}
+      <div class="flex flex-col justify-center bg-invbg p-8 text-invfg">
+        <p class="display text-2xl leading-snug">Want us to run a workshop at your campus?</p>
+        <a href="/contact" class="neura-box-link on-light mt-8">
+          <span>Get in touch</span>
+          <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

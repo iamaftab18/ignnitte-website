@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Internships | Ignnitte Industry 4.0{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-28 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-25"></div>
+  <div class="relative mx-auto grid max-w-[1400px] items-center gap-16 lg:grid-cols-2">
+    <div data-reveal>
+      <p class="eyebrow">Internship Programs</p>
+      <h1 class="display mt-6 text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">
+        Gain real industry<br /><span class="text-fg/70">experience</span>
+      </h1>
+      <p class="mt-8 max-w-xl text-lg leading-8 text-fog">
+        We offer practical internship opportunities ranging from
+        <span class="font-semibold text-fg">1 to 6 months</span> across high-demand technology
+        domains to help students build hands-on skills and industry exposure.
+      </p>
+
+      <div class="mt-10 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3">
+        {% for t in ["Hands-on Learning","Industry Projects","Future Technologies"] %}
+        <div class="bg-base p-6 text-center"><p class="text-sm font-medium">{{ t }}</p></div>
+        {% endfor %}
+      </div>
+
+      <a href="/contact" class="neura-box-link mt-10">
+        <span>Contact us</span>
+        <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="border border-line bg-surface p-10" data-reveal>
+      <h3 class="display text-3xl">Internship domains</h3>
+      <p class="mt-5 text-lg leading-8 text-fog">
+        Learn emerging technologies through practical implementation, industrial exposure,
+        and real-world projects.
+      </p>
+
+      <div class="mt-8 flex items-center gap-4 border border-line bg-fg/[0.02] p-5">
+        <div class="grid h-12 w-12 place-items-center border border-line">
+          <svg viewBox="0 0 24 24" class="h-5 w-5"><path d="M12 7v5l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div>
+          <p class="text-xs uppercase tracking-wide text-fg/50">Internship Duration</p>
+          <p class="mt-1 text-lg font-semibold">1 to 6 Months</p>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        {% for d in ["Industry 4.0","Python Programming","Data Science","C and C++ Programming","IoT","IIoT","AIoT","Robotics","PLC & HMI"] %}
+        <span class="border border-line px-4 py-2 text-sm text-fg/80 transition hover:border-fg hover:text-fg">{{ d }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="mt-10 border border-line bg-fg/[0.02] p-6">
+        <h4 class="text-lg font-semibold">Build your career with practical experience</h4>
+        <p class="mt-4 leading-7 text-fog">
+          Our internship programs are designed to help students develop technical expertise,
+          project experience, and the confidence required by modern industries.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface px-5 py-24 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {% set steps = [
+        ["Learn","Build domain foundations with focused mentor-led sessions."],
+        ["Build","Create working prototypes, dashboards, and automation flows."],
+        ["Intern","Apply your learning to structured industry-style tasks."],
+        ["Industry Ready","Graduate with portfolio proof and job-ready confidence."]
+      ] %}
+      {% for s in steps %}
+      <div class="group bg-surface p-9 transition hover:bg-fg/[0.03]">
+        <p class="display text-sm text-fg/40">{{ '%02d' % loop.index }}</p>
+        <h3 class="display mt-8 text-2xl">{{ s[0] }}</h3>
+        <p class="mt-4 text-sm leading-6 text-fog">{{ s[1] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

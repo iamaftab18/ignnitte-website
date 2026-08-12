@@ -1,0 +1,45 @@
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+backend/.env
+
+# Backend
+backend/node_modules
+backend/submissions/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+
+# Build
+build/
+.vercel
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+venv/
+
+# Legacy / unused in this repo's deploy target — kept out to avoid
+# accidentally pushing huge or stale files if someone runs `git add .`
+/video_backups_original/
+/dist.zip
+/dist/
+/node_modules/
+

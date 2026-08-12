@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}Programs | Ignnitte Industry 4.0{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-24 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-30"></div>
+  <div class="relative mx-auto max-w-[1100px] text-center" data-reveal>
+    <p class="eyebrow">Industry Focused Training Program</p>
+    <h1 class="display mx-auto mt-6 max-w-4xl text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">
+      Build your career in IIoT, Robotics, AIoT &amp; Industrial Automation
+    </h1>
+    <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-fog">
+      A practical hands-on program covering Industrial IoT, robotics, automation, AIoT, cloud
+      integration, 3D printing, and real-world industrial applications guided by experienced mentors.
+    </p>
+    <div class="mt-10 flex justify-center">
+      <a href="/register" class="btn-solid">Enrol now
+        <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM DETAILS -->
+<section class="border-b border-line bg-surface px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <h2 class="display text-4xl sm:text-5xl">Program details</h2>
+      <p class="mt-6 text-lg text-fog">Everything you need to know about our industry-ready program.</p>
+    </div>
+
+    <div class="mt-16 grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2" data-reveal>
+        {% set details = [
+          ["Delivery Mode","Offline (Face to Face)"],
+          ["Duration","4 Months"],
+          ["Lab Training","2 months hands-on project in the lab"],
+          ["Online Learning","100+ hours of online content"],
+          ["Soft Skills","Soft-skills training for industry readiness"],
+          ["Support","Daily doubt resolution sessions"],
+          ["Certification By","Grok Learning Private Limited"]
+        ] %}
+        {% for d in details %}
+        <div class="bg-surface p-7">
+          <p class="eyebrow">{{ d[0] }}</p>
+          <p class="mt-3 text-lg font-medium">{{ d[1] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="border border-line bg-base p-8" data-reveal>
+        <p class="eyebrow">Visit Us</p>
+        <h3 class="display mt-4 text-2xl">Lab location</h3>
+        <div class="mt-6 border border-line bg-fg/[0.02] p-6">
+          <p class="text-sm font-medium text-fg/70">IGNNITTE SKILLING &amp; INNOVATION LLP</p>
+          <p class="mt-3 text-sm leading-6 text-fog">
+            518, City Avenue<br />Near Phoenix Mall<br />Mumbai-Bengaluru Highway<br />
+            Shankar Kalat Nagar<br /><span class="font-medium text-fg">Wakad, Pune - 411057</span>
+          </p>
+        </div>
+        <div class="mt-6 overflow-hidden border border-line">
+          <iframe title="Ignnitte Lab Location"
+            src="https://www.google.com/maps?q=Ignnitte%20Skilling%20%26%20Innovation%20LLP%20518%20City%20Avenue%20Near%20Phoenix%20Mall%20Wakad%20Pune%20411057&output=embed"
+            class="h-64 w-full grayscale" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="border-b border-line bg-base px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <p class="eyebrow">Why this program</p>
+      <h2 class="display mt-6 text-4xl sm:text-5xl">Highlights of this program</h2>
+    </div>
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      {% set highlights = [
+        ["150 hrs","Curriculum + hands-on lab training"],
+        ["20+","Hands-on projects"],
+        ["Daily","Doubt resolution sessions"],
+        ["Industry Experts","Lectures from veterans"],
+        ["Capstone","Real-life industry project"],
+        ["Soft Skills","Integrated curriculum"],
+        ["Certified","by Grok Learning"],
+        ["Placement Support","For full-time roles"],
+        ["Multi-disciplinary","CS, Electronics, Electrical, Mechanical"]
+      ] %}
+      {% for h in highlights %}
+      <article class="group bg-base p-9 transition hover:bg-fg/[0.03]">
+        <h3 class="display text-3xl">{{ h[0] }}</h3>
+        <p class="mt-4 text-sm leading-6 text-fog">{{ h[1] }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="bg-surface px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="text-center" data-reveal>
+      <h2 class="display text-4xl sm:text-5xl">Complete curriculum</h2>
+      <p class="mt-6 text-lg text-fog">Structured practical learning with industrial applications.</p>
+    </div>
+    <div class="mt-16 divide-y divide-line border-y border-line">
+      {% set curriculum = [
+        ["Fundamentals of Industrial IoT & IoT Foundations","Industry 4.0 overview, IoT gateway setup, sensors/actuators, communication protocols. IoT gateway configuration, circuit/block designers, and hands-on demo apps including smart city, smart agriculture, and smart healthcare."],
+        ["Industrial Robotics & AGVs","Robotic arm applications including pick-place and sorting, conveyor control, and energy monitoring. AGV navigation covering linear, right-angle, omni-directional, path detection, and obstacle detection."],
+        ["PLC & HMI Industrial Automation","Logic gates, timers, counters, FIFO/LIFO, and IoT integration. Hands-on work includes chemical mixer, temperature regulation, and color sorting."],
+        ["AIoT & Manufacturing Execution Systems","AIoT applications including paint inspection and component sorting. MES setup covering workflows, dashboards, edge/cloud computing, and AWS IoT demos."],
+        ["Additive Manufacturing & 3D Design","3D printer operation, safety precautions, maintenance, modeling/slicing software, and hands-on industrial designs."],
+        ["Mechatronics, Hydraulics, Pneumatics & Electromechanical Systems","Electrical components, relays, SLD of machines, gear boxes, motors, cylinders, compressed air systems, directional valves, and industrial measuring tools."],
+        ["Sector-Specific Industry Applications","Training modules for automotive, pharmaceuticals, logistics, and smart manufacturing use cases."],
+        ["Capstone Project","Design and develop your own Industry 4.0 or IIoT-based industrial solution."]
+      ] %}
+      {% for c in curriculum %}
+      <article class="group flex flex-col gap-5 py-8 lg:flex-row lg:items-start" data-reveal>
+        <div class="display text-2xl text-fg/30 lg:w-20">{{ '%02d' % loop.index }}</div>
+        <div class="flex-1">
+          <h3 class="text-xl font-semibold transition group-hover:text-fg">{{ c[0] }}</h3>
+          <p class="mt-3 max-w-3xl text-[15px] leading-7 text-fog">{{ c[1] }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | Ignnitte{% endblock %}
+
+{% block content %}
+<section class="flex min-h-screen items-center border-b border-line bg-base px-5 pt-32 pb-20 lg:px-10">
+  <div class="mx-auto w-full max-w-md">
+    <div class="border border-line bg-surface p-8 md:p-10">
+      <p class="eyebrow">Restricted Access</p>
+      <h1 class="display mt-4 text-4xl">Admin sign in</h1>
+      <p class="mt-4 text-sm text-fog">
+        Sign in to view visitor analytics, registrations and contact submissions.
+      </p>
+
+      <form method="post" class="mt-8 grid gap-6">
+        <label class="grid gap-2 text-sm font-medium">
+          Username
+          <input name="username" required autocomplete="username" placeholder="Admin ID"
+                 class="border border-line bg-transparent px-4 py-3.5 text-fg outline-none transition focus:border-fg" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium">
+          Password
+          <input type="password" name="password" required autocomplete="current-password" placeholder="••••••••"
+                 class="border border-line bg-transparent px-4 py-3.5 text-fg outline-none transition focus:border-fg" />
+        </label>
+        <button type="submit" class="btn-solid justify-center">
+          <span>Sign in</span>
+          <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        {% if error %}
+        <p class="form-msg is-error text-sm font-medium">{{ error }}</p>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

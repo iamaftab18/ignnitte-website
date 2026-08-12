@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}About Us | Ignnitte Skilling & Innovation LLP{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-24 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-25"></div>
+  <div class="relative mx-auto max-w-[1100px] text-center" data-reveal>
+    <p class="eyebrow">About Us</p>
+    <h1 class="display mx-auto mt-6 max-w-4xl text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">
+      About Ignnitte<br /><span class="text-fg/60">Skilling &amp; Innovation LLP</span>
+    </h1>
+    <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-fog">
+      Empowering students with practical skills, an innovation mindset, and real-world industrial
+      experience to become future-ready professionals in the Industry 4.0 era.
+    </p>
+  </div>
+</section>
+
+<section class="border-b border-line bg-surface px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="text-center" data-reveal>
+      <h2 class="display text-4xl sm:text-5xl">Why IGNNITTE was created</h2>
+      <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-fog">
+        Bridging the gap between academic education and real-world industrial expectations through
+        experiential learning and practical innovation.
+      </p>
+    </div>
+
+    <div class="mt-14 border border-line bg-fg/[0.02] p-10 text-center" data-reveal>
+      <p class="display text-2xl leading-snug sm:text-3xl">“Graduates are qualified, but not industry-ready.”</p>
+      <p class="mt-5 text-fog">
+        This realization inspired a mission to transform education into a practical and
+        industry-focused learning experience.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-14 max-w-4xl space-y-8 text-center" data-reveal>
+      <p class="text-lg leading-8 text-fog">
+        A group of visionary entrepreneurs and industry leaders from Pune came together to solve one
+        of the most critical challenges faced by students today — the lack of practical exposure and
+        industrial readiness despite strong academic performance.
+      </p>
+      <p class="text-lg leading-8 text-fog">
+        IGNNITTE was established to create a powerful skilling ecosystem where students gain hands-on
+        learning, real-world implementation experience, and exposure to emerging technologies like
+        AI, IoT, Robotics, Automation, and Smart Manufacturing.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3" data-reveal>
+      {% for f in ["Practical exposure to industrial systems","Real-world project implementation","Understanding Industry 4.0 technologies"] %}
+      <div class="bg-surface p-8 text-center"><p class="text-base font-medium leading-7">{{ f }}</p></div>
+      {% endfor %}
+    </div>
+
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2" data-reveal>
+      <div class="bg-surface p-10">
+        <p class="eyebrow">Vision</p>
+        <h3 class="display mt-4 text-2xl">Our vision</h3>
+        <p class="mt-6 leading-8 text-fog">
+          To become a leading force in transforming education by developing industry-ready
+          professionals equipped with practical skills, an innovation mindset, and real-world
+          industrial experience aligned with Industry 4.0.
+        </p>
+      </div>
+      <div class="bg-surface p-10">
+        <p class="eyebrow">Mission</p>
+        <h3 class="display mt-4 text-2xl">Our mission</h3>
+        <p class="mt-6 leading-8 text-fog">
+          To bridge the gap between academics and industry through hands-on training, industrial
+          projects, and advanced technologies — empowering students to become skilled, confident,
+          and employable professionals.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-base px-5 py-24 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="border border-line bg-surface">
+      <div class="border-b border-line px-8 py-6 text-center">
+        <h2 class="display text-2xl">Visit our innovation lab</h2>
+      </div>
+      <div class="grid lg:grid-cols-2">
+        <div class="flex flex-col justify-center p-10">
+          <h3 class="display text-2xl">Ignnitte Skilling &amp; Innovation LLP</h3>
+          <p class="mt-6 text-lg leading-8 text-fog">
+            518, City Avenue<br />Near Phoenix Mall<br />Wakad, Pune - 411057
+          </p>
+          <span class="mt-8 inline-flex w-fit items-center gap-2 border border-line px-5 py-3 text-sm">
+            <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            Pune, Maharashtra
+          </span>
+        </div>
+        <div class="min-h-[350px]">
+          <iframe title="Ignnitte Location"
+            src="https://www.google.com/maps?q=Ignnitte%20Skilling%20%26%20Innovation%20LLP%20Wakad%20Pune&output=embed"
+            class="h-full min-h-[350px] w-full grayscale" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

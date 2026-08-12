@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Contact | Ignnitte Industry 4.0{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-24 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-25"></div>
+  <div class="relative mx-auto max-w-[1400px]" data-reveal>
+    <p class="eyebrow">Contact</p>
+    <h1 class="display mt-6 max-w-4xl text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">
+      Start a conversation with Ignnitte
+    </h1>
+    <p class="mt-8 max-w-2xl text-lg leading-8 text-fog">
+      Ask about programs, internships, cohorts, or the right path for your Industry 4.0 goals.
+    </p>
+  </div>
+</section>
+
+<section class="bg-surface px-5 py-24 lg:px-10">
+  <div class="mx-auto grid max-w-[1400px] gap-px overflow-hidden border border-line bg-line lg:grid-cols-[1.1fr_0.9fr]">
+    <!-- FORM -->
+    <div class="bg-surface p-8 md:p-12">
+      <form id="contact-form" class="grid gap-6">
+        <label class="grid gap-2 text-sm font-medium">
+          Name
+          <input name="name" required placeholder="Your name"
+                 class="border border-line bg-transparent px-4 py-3.5 text-fg outline-none transition focus:border-fg" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium">
+          Email
+          <input type="email" name="email" required placeholder="you@example.com"
+                 class="border border-line bg-transparent px-4 py-3.5 text-fg outline-none transition focus:border-fg" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium">
+          Contact Number
+          <input type="tel" name="phone" required placeholder="Your contact number"
+                 class="border border-line bg-transparent px-4 py-3.5 text-fg outline-none transition focus:border-fg" />
+        </label>
+        <label class="grid gap-2 text-sm font-medium">
+          I want to
+          <select name="inquiry" required
+                  class="border border-line bg-surface px-4 py-3.5 text-fg outline-none transition focus:border-fg">
+            <option value="" class="bg-surface">Select an option</option>
+            <option class="bg-surface">Ask about programs</option>
+            <option class="bg-surface">Inquire about internships</option>
+            <option class="bg-surface">Discuss cohort details</option>
+            <option class="bg-surface">Get guidance on Industry 4.0 path</option>
+          </select>
+        </label>
+        <button type="submit" class="btn-solid mt-2 justify-center">
+          <span class="btn-text">Send message</span>
+          <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p id="contact-msg" class="form-msg hidden text-sm font-medium"></p>
+      </form>
+    </div>
+
+    <!-- INFO -->
+    <div class="bg-base p-8 md:p-12">
+      <h2 class="display text-2xl">Contact info</h2>
+      <div class="mt-8 space-y-6 text-[15px] text-fog">
+        <div class="flex items-start gap-4">
+          <svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 flex-none text-fg"><path d="M4 6l8 6 8-6M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <a href="mailto:info@ignnitte.com" class="transition hover:text-fg">info@ignnitte.com</a>
+        </div>
+        <div class="flex items-start gap-4">
+          <svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 flex-none text-fg"><path d="M5 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <a href="tel:+917727877575" class="transition hover:text-fg">+91 7727877575</a>
+        </div>
+        <div class="flex items-start gap-4">
+          <svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 flex-none text-fg"><path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span>518, City Avenue, Near Phoenix Mall, Mumbai-Bengaluru Highway, Wakad, Pune - 411057</span>
+        </div>
+      </div>
+      <div class="mt-10 overflow-hidden border border-line">
+        <iframe title="Ignnitte Location"
+          src="https://www.google.com/maps?q=Ignnitte%20Skilling%20%26%20Innovation%20LLP%20Wakad%20Pune&output=embed"
+          class="h-64 w-full grayscale" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const form = document.getElementById('contact-form');
+  const msg = document.getElementById('contact-msg');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type=submit]');
+    const btnText = btn.querySelector('.btn-text');
+    const payload = Object.fromEntries(new FormData(form).entries());
+    btnText.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      msg.textContent = data.message;
+      msg.classList.remove('hidden');
+      msg.classList.toggle('is-error', !res.ok);
+      if (res.ok) form.reset();
+    } catch (err) {
+      msg.textContent = 'Something went wrong. Please try again.';
+      msg.classList.remove('hidden');
+      msg.classList.add('is-error');
+    } finally {
+      btnText.textContent = 'Send message';
+      btn.disabled = false;
+    }
+  });
+</script>
+{% endblock %}

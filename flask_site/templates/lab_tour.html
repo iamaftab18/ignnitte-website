@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Lab Tour | Ignnitte Industry 4.0{% endblock %}
+
+{% block content %}
+<section class="relative overflow-hidden border-b border-line bg-base px-5 pt-40 pb-24 lg:px-10">
+  <div class="absolute inset-0 grid-texture opacity-25"></div>
+  <div class="relative mx-auto max-w-[1100px] text-center" data-reveal>
+    <p class="eyebrow">Industry 4.0 Advanced Lab</p>
+    <h1 class="display mt-6 text-5xl leading-[0.95] sm:text-6xl lg:text-7xl">Step inside our lab</h1>
+    <p class="mx-auto mt-8 max-w-3xl text-lg leading-8 text-fog">
+      Experience hands-on learning with cutting-edge Industry 4.0 equipment, robotics systems,
+      automation kits, AIoT devices, and smart manufacturing setups designed for future innovators.
+    </p>
+  </div>
+</section>
+
+<section class="border-b border-line bg-surface px-5 py-20 lg:px-10">
+  <div class="mx-auto grid max-w-[1400px] gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+    {% set gallery = [
+      ["lab_1.png","Innovation & Skilling Centre","Modern collaborative classroom designed for AI, IoT, Robotics, PLC-HMI, and Industry 4.0 training programs."],
+      ["lab_2.png","Smart Automation Lab","Equipped with industrial automation systems, smart sensors, robotics, and real-time control modules for practical learning."]
+    ] %}
+    {% for g in gallery %}
+    <figure class="force-dark group relative bg-surface">
+      <img src="/assets/images/{{ g[0] }}" alt="{{ g[1] }}" class="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105" />
+      <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/40 to-transparent p-8">
+        <h3 class="display text-2xl text-fg">{{ g[1] }}</h3>
+        <p class="mt-3 max-w-md text-sm leading-6 text-fg/80">{{ g[2] }}</p>
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="bg-base px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div data-reveal>
+      <h2 class="display text-4xl sm:text-5xl">Our lab equipment</h2>
+      <p class="mt-4 text-lg text-fog">Advanced tools and systems for practical Industry 4.0 learning.</p>
+    </div>
+
+    <div class="mt-14 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {% set labs = [
+        ["Dobot Robotic Arm","Dobot_Robotic_Arm_with_Accessories.webp","A precision robotic arm used to demonstrate pick-and-place automation, object handling, sorting tasks, and robotic motion control used in smart manufacturing lines."],
+        ["Advance Robotics Kit","Robotic_kits.webp","A hands-on robotics learning setup for understanding sensors, motors, controllers, movement logic, obstacle detection, and basic autonomous robot behavior."],
+        ["PLC and HMI","PLC_with_HMI.webp","An industrial automation model that helps learners practice PLC programming, HMI screen operation, machine control logic, timers, counters, and process monitoring."],
+        ["Raspberry AIoT Kit","Grok_AIoT_Gateway.webp","An AIoT gateway kit for connecting sensors, collecting real-time data, running edge applications, and sending machine data to cloud or dashboard systems."],
+        ["Grok Sensor Box","Grok_Sensor_box.webp","A compact sensor training box used to study industrial inputs such as temperature, proximity, light, and other signals for IoT and automation projects."],
+        ["Chemical Reactor","New_Chemical_Reactor.webp","A process automation model that demonstrates mixing, heating, sensing, and control loops commonly used in chemical and pharmaceutical manufacturing."],
+        ["Smart Automated Bottling Plant","Smart_automated_bottling_plant.webp","A miniature production-line model for learning filling, conveyor movement, sensing, sequencing, and automation logic used in packaging industries."],
+        ["Industry 4.0 Fruit Sorting","Industry_4_0.webp","A smart sorting model that demonstrates product identification, automated segregation, fulfillment flow, and Industry 4.0 data-driven decision making."]
+      ] %}
+      {% for lab in labs %}
+      <article class="group flex flex-col bg-base">
+        <div class="overflow-hidden">
+          <img src="/assets/images/{{ lab[1] }}" alt="{{ lab[0] }}" class="h-52 w-full object-cover transition duration-700 group-hover:scale-110" />
+        </div>
+        <div class="flex flex-1 flex-col p-6 text-center">
+          <h3 class="text-base font-semibold">{{ lab[0] }}</h3>
+          <button type="button" class="lab-toggle neura-box-link mx-auto mt-5 text-sm" data-target="lab-{{ loop.index }}">
+            <span class="lab-label">Details</span>
+            <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </button>
+          <p id="lab-{{ loop.index }}" class="mt-5 hidden border-t border-line pt-5 text-left text-sm leading-6 text-fog">{{ lab[2] }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.querySelectorAll('.lab-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.target);
+      const open = !el.classList.contains('hidden');
+      el.classList.toggle('hidden');
+      btn.querySelector('.lab-label').textContent = open ? 'Details' : 'Show less';
+    });
+  });
+</script>
+{% endblock %}

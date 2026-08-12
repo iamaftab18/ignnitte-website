@@ -1,0 +1,575 @@
+{% extends "base.html" %}
+{% block title %}Ignnitte | Industry 4.0 Training Institute — Pune{% endblock %}
+
+{% block content %}
+<!-- ===================== HERO ===================== -->
+<section class="force-dark relative isolate flex min-h-screen items-center overflow-hidden bg-black">
+  <video class="absolute inset-0 -z-30 h-full w-full object-cover"
+         autoplay muted loop playsinline>
+    <source src="/assets/videos/video.mp4" type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 -z-20 bg-gradient-to-r from-black/75 via-black/25 to-transparent"></div>
+  <div class="absolute inset-0 -z-10 grid-texture opacity-40"></div>
+
+  <div class="mx-auto w-full max-w-[1400px] px-5 pt-32 pb-20 lg:px-10">
+    <div class="flex flex-wrap items-center gap-3">
+      <span class="rounded-full border border-line bg-fg/5 px-4 py-2 text-xs font-medium tracking-wide backdrop-blur">
+        Master the Future of Manufacturing
+      </span>
+      <span class="rounded-full border border-fg/25 bg-fg/10 px-4 py-2 text-xs font-medium tracking-wide backdrop-blur">
+        Free registration · No fees
+      </span>
+    </div>
+
+    <h1 class="display mt-8 max-w-5xl text-[13vw] leading-[0.92] sm:text-7xl lg:text-[6.5rem]">
+      Build your career in
+      <span class="mt-2 block text-fg/95">
+        <span id="typewriter" class="typewriter" data-words="IIoT, AIoT, Robotics, PLC HMI"></span><span class="typewriter-cursor" aria-hidden="true"></span>
+      </span>
+    </h1>
+
+    <div class="mt-10 grid max-w-3xl gap-3">
+      {% for hl in [
+        "India's first comprehensive Industry 4.0 program",
+        "Learn IoT, AI, Robotics, Automation, Cloud, Data Analytics, 3D Printing and more",
+        "Build 20+ hands-on projects"
+      ] %}
+      <div class="flex items-center gap-3 border-l border-fg/25 bg-fg/[0.03] px-4 py-3 text-sm text-fg/85 backdrop-blur">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 flex-none text-fg"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>{{ hl }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+      <a href="/register" class="btn-solid justify-center">
+        Register Now
+        <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/programs" class="btn-ghost justify-center">Explore Courses</a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-fg/40">Scroll</div>
+</section>
+
+<!-- ===================== ECOSYSTEM / three.js ===================== -->
+<section class="relative overflow-hidden border-t border-line bg-surface px-5 py-28 lg:px-10">
+  <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(650px circle at 12% 15%, rgba(56,189,248,0.16), transparent 60%);"></div>
+  <div class="mx-auto grid max-w-[1400px] items-center gap-16 lg:grid-cols-2">
+    <div data-reveal>
+      <p class="eyebrow">About Ignnitte</p>
+      <h2 class="display mt-6 text-4xl sm:text-5xl lg:text-[3.6rem]">
+        Bridging the gap between<br />education&nbsp;&amp;&nbsp;industry
+      </h2>
+      <p class="mt-8 max-w-xl text-lg leading-8 text-fog">
+        IGNNITTE was founded with a mission to transform students into industry-ready
+        professionals through practical learning, innovation, and real-world industrial exposure.
+      </p>
+      <div class="mt-10 border border-line bg-fg/[0.02] p-8">
+        <p class="display text-2xl leading-snug">“Graduates are qualified, but not industry-ready.”</p>
+        <p class="mt-5 leading-7 text-fog">
+          That's why IGNNITTE focuses on practical implementation, industrial systems,
+          and future technologies aligned with Industry 4.0.
+        </p>
+      </div>
+      <a href="/about" class="neura-box-link mt-10">
+        <span>Discover our story</span>
+        <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+    <div class="relative" data-reveal>
+      <div class="aspect-square w-full">
+        <canvas id="three-canvas" class="h-full w-full"></canvas>
+      </div>
+      <div class="pointer-events-none absolute inset-0 grid-texture opacity-30"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILL TRACKS (video band) ===================== -->
+<section class="force-dark relative isolate overflow-hidden border-t border-line bg-black">
+  <video class="absolute inset-0 -z-30 h-full w-full object-cover"
+         autoplay muted loop playsinline>
+    <source src="/assets/videos/bgvideo.mp4" type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 -z-20 bg-gradient-to-br from-[#03122e]/25 via-[#0a3a8f]/10 to-[#03122e]/25"></div>
+  <div class="absolute inset-0 -z-10 grid-texture opacity-20"></div>
+
+  <div class="relative mx-auto max-w-[1400px] px-5 py-28 lg:px-10">
+    <p class="eyebrow" data-reveal>Industry 4.0 Learning Paths</p>
+    <h2 class="display mt-6 max-w-2xl text-5xl leading-[0.95] sm:text-6xl lg:text-[4.5rem]" data-reveal>
+      Industry 4.0<br />skill tracks<span class="text-sky-400">.</span>
+    </h2>
+    <p class="mt-8 max-w-xl text-lg leading-8 text-fg/80" data-reveal>
+      Hands-on training covering industry-ready technologies — IoT, AI, robotics,
+      cloud and automation, built around real lab equipment.
+    </p>
+
+    <div class="mt-10 flex max-w-3xl flex-wrap gap-3" data-reveal>
+      {% for skill in [
+        "IoT / Industrial IoT (IIoT)","Data Analytics","Artificial Intelligence","GenAI",
+        "Robotics","Cloud Computing","3D Printing","PLC HMI"
+      ] %}
+      <span class="rounded-full border border-fg/25 bg-fg/5 px-5 py-2.5 text-sm font-medium backdrop-blur">{{ skill }}</span>
+      {% endfor %}
+    </div>
+
+    <a href="/programs" class="neura-box-link mt-14" data-reveal>
+      <span>Explore programs</span>
+      <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== INDUSTRY SHOWCASE ===================== -->
+<section class="relative isolate overflow-hidden border-t border-line bg-surface px-5 py-20 sm:py-24 lg:px-10 lg:py-28">
+  <div class="aurora-bg pointer-events-none absolute inset-0 -z-20" aria-hidden="true">
+    <div class="aurora-blob aurora-blob--a"></div>
+    <div class="aurora-blob aurora-blob--b"></div>
+    <div class="aurora-blob aurora-blob--c"></div>
+  </div>
+  <div class="pointer-events-none absolute inset-0 -z-20" style="background: linear-gradient(180deg, transparent 0%, transparent 38%, rgb(var(--c-surface)) 78%, rgb(var(--c-surface)) 100%);"></div>
+  <div class="pointer-events-none absolute inset-0 -z-10 grid-texture opacity-[0.04]"></div>
+
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <p class="eyebrow">Industry 4.0 Labs</p>
+      <h2 class="display mx-auto mt-6 max-w-3xl text-4xl sm:text-5xl lg:text-[3.4rem]">
+        Learn with industry-grade equipment
+      </h2>
+      <p class="mx-auto mt-6 max-w-3xl text-lg text-fog">
+        Gain practical experience on real Industry 4.0 systems used in smart manufacturing,
+        robotics, automation, IIoT and industrial control environments.
+      </p>
+    </div>
+
+    <div class="marquee mt-12 border-y border-line py-6 sm:mt-16 sm:py-8" data-reveal>
+      <div class="marquee__track">
+        {% set equip = [
+          ["Dobot Robotic Arm","Dobot_Robotic_Arm_with_Accessories.webp","videos/dobot.mp4"],
+          ["PLC & HMI Training System","PLC_with_HMI.webp","videos/plc-hmi.mp4"],
+          ["Smart Automated Bottling Plant","Smart_automated_bottling_plant.webp",None],
+          ["Chemical Reactor Automation","New_Chemical_Reactor.webp","videos/chemical.mp4"],
+          ["Industry 4.0 Fruit Sorting","Industry_4_0.webp","videos/industry4.0.mp4"]
+        ] %}
+        {% for dup in [1, 2] %}
+          {% for item in equip %}
+          <figure class="w-[220px] flex-none sm:w-[280px] lg:w-[320px]">
+            <div class="overflow-hidden border border-line transition duration-500 hover:-translate-y-1 hover:border-fg/35">
+              {% if item[2] %}
+              <video
+                class="h-36 w-full object-cover transition duration-700 hover:scale-105 sm:h-44 lg:h-56"
+                poster="/assets/images/{{ item[1] }}"
+                data-lazy-src="/assets/{{ item[2] }}"
+                muted loop playsinline preload="none"
+              ></video>
+              {% else %}
+              <img src="/assets/images/{{ item[1] }}" alt="{{ item[0] }}" loading="lazy" class="h-36 w-full object-cover transition duration-700 hover:scale-105 sm:h-44 lg:h-56" />
+              {% endif %}
+            </div>
+            <figcaption class="mt-3 text-center text-xs font-medium text-fg/90 sm:mt-4 sm:text-sm">{{ item[0] }}</figcaption>
+          </figure>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line sm:mt-16 lg:grid-cols-4" data-reveal>
+      {% for stat in [["20+","Hands-on Projects"],["5+","Industry Labs"],["150+","Practical Hours"],["100%","Hands-on Learning"]] %}
+      <div class="bg-surface px-4 py-8 text-center sm:px-6 sm:py-12">
+        <p class="display text-3xl sm:text-4xl lg:text-5xl">{{ stat[0] }}</p>
+        <p class="mt-2 text-xs text-fog sm:mt-3 sm:text-sm">{{ stat[1] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MENTORS ===================== -->
+<section class="relative overflow-hidden border-t border-line bg-base px-5 py-28 lg:px-10">
+  <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(700px circle at 88% 8%, rgba(167,139,250,0.16), transparent 60%);"></div>
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <p class="eyebrow">The People Behind Ignnitte</p>
+      <h2 class="display mt-6 text-4xl sm:text-5xl lg:text-[3.4rem]">Meet the mentors</h2>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-fog">
+        Architects of our curriculum with decades of industry experience.
+      </p>
+    </div>
+
+    {% set faculty = [
+      ["Mr. Suryakant Dodmise","CEO, SIBIC Business Incubator","Suryakant.jpeg","Suryakant Dodmise is an electronics graduate with 25+ years of experience in industry and academia, specializing in building innovation, incubation, and entrepreneurial ecosystems across sectors such as Manufacturing, Agritech, Healthcare, Waste Management, and Education."],
+      ["Mr. Nitin S Komawar","Director, Co-Founder & CEO, Grok Learning Pvt Ltd","Nitin.jpeg","Nitin S. Komawar has more than 25 years of global experience in the technology industry. He has co-founded and managed multiple innovative technology companies in Silicon Valley, USA & India. An entrepreneur passionate about bringing new innovations to the market."],
+      ["Mr. Manoj Patil","MD, Patil Automation Limited, Pune","Manoj.jpeg","Managing Director and Board Member since 2015 with 25+ years in Industrial Automation. Mechanical Engineering (1998), projects at PARI, Pune. Leads company strategy and overall business operations."],
+      ["Mr. Sagar Mandlik","CEO, Impulse Integrated Systems Pvt Ltd","sagar.jpeg","A qualified engineering and management professional with a B.E. in Electronics and an MBA in Project Management. With 17+ years of experience across the marine, automation, and electrical automation sectors."]
+    ] %}
+
+    <div class="mentor-carousel mx-auto mt-16 max-w-3xl" data-mentor-carousel data-reveal>
+      <div class="mentor-carousel__stage">
+        <div class="mentor-carousel__viewport">
+          <div class="mentor-carousel__track" data-mentor-track>
+            {% for group in range(3) %}
+              {% for f in faculty %}
+              <article class="mentor-card">
+                <div class="mentor-card__photo-wrap">
+                  <img src="/assets/images/{{ f[2] }}" alt="{{ f[0] }}" class="mentor-card__photo" />
+                </div>
+                <h3 class="mentor-card__name display">{{ f[0] }}</h3>
+                <p class="mentor-card__role">{{ f[1] }}</p>
+                <p class="mentor-card__bio">{{ f[3] }}</p>
+              </article>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <button type="button" class="mentor-carousel__arrow mentor-carousel__arrow--prev" data-mentor-prev aria-label="Previous mentor">
+          <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" class="mentor-carousel__arrow mentor-carousel__arrow--next" data-mentor-next aria-label="Next mentor">
+          <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="mentor-carousel__dots" data-mentor-dots>
+        {% for f in faculty %}
+        <button type="button" class="mentor-carousel__dot" data-mentor-dot aria-label="Show {{ f[0] }}"></button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PARTNERS ===================== -->
+<section class="border-t border-line bg-gradient-to-b from-amber-50 via-orange-50 to-amber-100 px-5 py-24 lg:px-10">
+  <div class="mx-auto max-w-[1200px] text-center">
+    <p class="text-[0.72rem] font-medium uppercase tracking-[0.28em] text-orange-700/70" data-reveal>Our Center Partners</p>
+    <h2 class="display mt-6 text-3xl text-neutral-900 sm:text-4xl" data-reveal>Backed by industry leaders</h2>
+    <div class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-orange-200/70 bg-orange-200/50 shadow-sm sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+      {% for p in [["Patil Automation Limited","pal.png"],["Grok Learning","grok.png"],["Impulse","impulse.png"],["SIBIC","sibic.png"]] %}
+      <div class="flex min-h-[180px] flex-col items-center justify-center gap-5 bg-white px-6 py-8 transition hover:bg-orange-50/80">
+        <img src="/assets/images/{{ p[1] }}" alt="{{ p[0] }}" class="max-h-16 max-w-[9rem] object-contain opacity-90" />
+        <p class="text-sm font-medium text-neutral-700">{{ p[0] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== JOURNEY ===================== -->
+<section class="relative overflow-hidden border-t border-line bg-base px-5 py-28 lg:px-10">
+  <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(650px circle at 10% 85%, rgba(52,211,153,0.14), transparent 60%);"></div>
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <p class="eyebrow">Career Transformation Path</p>
+      <h2 class="display mx-auto mt-6 max-w-3xl text-4xl sm:text-5xl lg:text-[3.4rem]">
+        Your journey to becoming industry ready
+      </h2>
+      <p class="mx-auto mt-6 max-w-3xl text-lg text-fog">
+        A structured learning experience designed to transform students into highly skilled
+        industry professionals through practical exposure and real-world implementation.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {% set steps = [
+        ["01","Learn","Master Industry 4.0 fundamentals"],
+        ["02","Build","Develop real-time projects"],
+        ["03","Intern","Gain industrial experience"],
+        ["04","Industry Ready","Launch your career successfully"]
+      ] %}
+      {% for s in steps %}
+      <div class="group bg-base p-9 transition hover:bg-fg/[0.03]">
+        <p class="display text-sm text-fg/40">{{ s[0] }}</p>
+        <h3 class="display mt-8 text-2xl">{{ s[1] }}</h3>
+        <p class="mt-4 text-sm leading-6 text-fog">{{ s[2] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INTERN TESTIMONIALS ===================== -->
+<section class="border-t border-line bg-surface px-5 py-28 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="text-center" data-reveal>
+      <p class="eyebrow">Intern Testimonials</p>
+      <h2 class="display mt-6 text-4xl sm:text-5xl">What our interns say</h2>
+    </div>
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+      {% set quotes = [
+        ["Suddhanshu Mallik","The internship helped me understand how Industry 4.0 concepts are used in real projects."],
+        ["Shikha Shetty","Hands-on tasks made automation, data, and IoT much easier to connect with practical work."],
+        ["Janhavi Kulkarni","Mentor guidance and project practice gave me more confidence to work on industrial systems."],
+        ["Digvijay Bangale","The training was focused, practical, and useful for building an industry-ready mindset."],
+        ["Ramith R. Shetty","I learned how to approach real problems with structured thinking and modern technology tools."],
+        ["","Ready to start your own Industry 4.0 journey with us?"]
+      ] %}
+      {% for q in quotes %}
+        {% if q[0] %}
+        <figure class="bg-surface p-8">
+          <blockquote class="text-[15px] leading-7 text-fg/85">“{{ q[1] }}”</blockquote>
+          <figcaption class="mt-6"><span class="font-semibold">{{ q[0] }}</span><span class="mt-1 block text-xs uppercase tracking-wide text-fg/50">Industry 4.0 Intern</span></figcaption>
+        </figure>
+        {% else %}
+        <div class="flex flex-col justify-between bg-invbg p-8 text-invfg">
+          <p class="display text-2xl leading-snug">{{ q[1] }}</p>
+          <a href="/register" class="neura-box-link on-light mt-8">
+            <span>Register now</span>
+            <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M7 17L17 7M17 7H8M17 7v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="relative overflow-hidden border-t border-line bg-base px-5 py-32 lg:px-10">
+  <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(800px circle at 50% 0%, rgba(251,146,60,0.16), transparent 60%);"></div>
+  <div class="absolute inset-0 grid-texture opacity-30"></div>
+  <div class="relative mx-auto max-w-[1100px] text-center" data-reveal>
+    <h2 class="display text-5xl sm:text-6xl lg:text-7xl">Take a step towards<br />smarter automation</h2>
+    <p class="mx-auto mt-8 max-w-2xl text-lg text-fog">
+      Work with our team to find the right program for your Industry 4.0 goals. We'll help you
+      get up and running fast.
+    </p>
+    <div class="mt-12 flex flex-col justify-center gap-4 sm:flex-row">
+      <a href="/contact" class="btn-solid justify-center">Get in contact</a>
+      <a href="/programs" class="btn-ghost justify-center">View programs</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  /* Hero heading typewriter — types, holds, deletes, moves to the next word, loops */
+  (function () {
+    const el = document.getElementById('typewriter');
+    if (!el) return;
+    const words = el.dataset.words.split(',').map((w) => w.trim());
+    const TYPE_MS = [55, 95];   // randomized range per keystroke, for a natural feel
+    const DELETE_MS = [28, 48];
+    const HOLD_MS = 1500;
+    const GAP_MS = 350;
+    const rand = (range) => range[0] + Math.random() * (range[1] - range[0]);
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    (function tick() {
+      const word = words[wordIndex];
+
+      if (!deleting) {
+        charIndex++;
+        el.textContent = word.slice(0, charIndex);
+        if (charIndex === word.length) {
+          deleting = true;
+          setTimeout(tick, HOLD_MS);
+          return;
+        }
+        setTimeout(tick, rand(TYPE_MS));
+      } else {
+        charIndex--;
+        el.textContent = word.slice(0, charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(tick, GAP_MS);
+          return;
+        }
+        setTimeout(tick, rand(DELETE_MS));
+      }
+    })();
+  })();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  /* three.js wireframe accent */
+  (function () {
+    const canvas = document.getElementById('three-canvas');
+    if (!canvas || !window.THREE) return;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.z = 4.2;
+
+    const geo = new THREE.IcosahedronGeometry(1.5, 1);
+    const wire = new THREE.LineSegments(
+      new THREE.WireframeGeometry(geo),
+      new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.55 })
+    );
+    scene.add(wire);
+
+    const coreMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a });
+    const core = new THREE.Mesh(new THREE.IcosahedronGeometry(1.46, 1), coreMat);
+    scene.add(core);
+
+    const dots = new THREE.Points(
+      new THREE.IcosahedronGeometry(2.4, 2),
+      new THREE.PointsMaterial({ color: 0xffffff, size: 0.02, transparent: true, opacity: 0.5 })
+    );
+    scene.add(dots);
+
+    // Keep the 3D object readable in both light and dark themes
+    function applyThemeColors() {
+      const light = document.documentElement.classList.contains('light');
+      const fg = light ? 0x0c0c0e : 0xffffff;
+      const bg = light ? 0xffffff : 0x000000;
+      wire.material.color.setHex(fg);
+      dots.material.color.setHex(fg);
+      core.material.color.setHex(bg);
+    }
+    applyThemeColors();
+    new MutationObserver(applyThemeColors).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['class'],
+    });
+
+    function resize() {
+      const s = canvas.clientWidth;
+      renderer.setSize(s, s, false);
+      camera.aspect = 1;
+      camera.updateProjectionMatrix();
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let mx = 0, my = 0;
+    window.addEventListener('mousemove', (e) => {
+      mx = (e.clientX / window.innerWidth - 0.5);
+      my = (e.clientY / window.innerHeight - 0.5);
+    });
+
+    (function animate() {
+      requestAnimationFrame(animate);
+      wire.rotation.y += 0.0035;
+      wire.rotation.x += 0.0015;
+      core.rotation.copy(wire.rotation);
+      dots.rotation.y -= 0.0012;
+      scene.rotation.y += (mx * 0.5 - scene.rotation.y) * 0.04;
+      scene.rotation.x += (my * 0.5 - scene.rotation.x) * 0.04;
+      renderer.render(scene, camera);
+    })();
+  })();
+</script>
+<script>
+  /* Mentors carousel — centered card auto-loops, sliding left forever */
+  (function () {
+    const root = document.querySelector('[data-mentor-carousel]');
+    if (!root) return;
+
+    const viewport = root.querySelector('.mentor-carousel__viewport');
+    const track = root.querySelector('[data-mentor-track]');
+    const cards = Array.from(track.querySelectorAll('.mentor-card'));
+    const dots = Array.from(root.querySelectorAll('[data-mentor-dot]'));
+    const groupSize = dots.length;
+    if (!groupSize || cards.length !== groupSize * 3) return;
+
+    const INTERVAL = 4000;
+    const TRANSITION_MS = 900;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let index = groupSize; // start in the middle copy so there's always a buffer on both sides
+    let timer = null;
+
+    function render(withTransition) {
+      track.classList.toggle('no-transition', !withTransition);
+      const card = cards[index];
+      const offset = viewport.offsetWidth / 2 - (card.offsetLeft + card.offsetWidth / 2);
+      track.style.transform = `translateX(${offset}px)`;
+      cards.forEach((c, i) => c.classList.toggle('is-center', i === index));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === index % groupSize));
+      if (!withTransition) {
+        void track.offsetHeight; // force reflow so the next transform change transitions again
+        track.classList.remove('no-transition');
+      }
+    }
+
+    function goTo(target) {
+      index = target;
+      render(true);
+      window.setTimeout(() => {
+        if (index >= groupSize * 2) {
+          index -= groupSize;
+          render(false);
+        } else if (index < groupSize) {
+          index += groupSize;
+          render(false);
+        }
+      }, TRANSITION_MS);
+    }
+
+    function next() { goTo(index + 1); }
+    function prev() { goTo(index - 1); }
+
+    function start() {
+      if (reduceMotion) return;
+      stop();
+      timer = window.setInterval(next, INTERVAL);
+    }
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        stop();
+        let target = i;
+        while (target <= index) target += groupSize;
+        goTo(target);
+        start();
+      });
+    });
+
+    const prevBtn = root.querySelector('[data-mentor-prev]');
+    const nextBtn = root.querySelector('[data-mentor-next]');
+    if (prevBtn) prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { stop(); next(); start(); });
+
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+    }
+
+    window.addEventListener('resize', () => render(false));
+
+    requestAnimationFrame(() => render(false));
+    start();
+  })();
+</script>
+<script>
+  /* Equipment marquee videos — only load/play once the marquee is on screen,
+     pause when scrolled away, so idle CPU/GPU and bandwidth aren't spent on
+     videos nobody is looking at. */
+  (function () {
+    const marquee = document.querySelector('.marquee');
+    if (!marquee) return;
+    const videos = marquee.querySelectorAll('video[data-lazy-src]');
+    if (!videos.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            if (!video.src) video.src = video.dataset.lazySrc;
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { root: null, rootMargin: '200px', threshold: 0.1 }
+    );
+
+    videos.forEach((video) => io.observe(video));
+  })();
+</script>
+{% endblock %}

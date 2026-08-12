@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Ignnitte | Industry 4.0 Training Institute — Pune{% endblock %}</title>
+  <meta name="description" content="Ignnitte, Pune — Hands-on Industry 4.0 training in IIoT, Robotics, PLC, AIoT, Cloud & GenAI. Real lab. Real skills. Enrol now." />
+  <link rel="icon" href="/assets/ignnitte.png" />
+
+  <!-- Apply saved theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ignnitte-theme') || 'dark';
+        document.documentElement.classList.remove('dark', 'light');
+        document.documentElement.classList.add(t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            base: "rgb(var(--c-base) / <alpha-value>)",
+            surface: "rgb(var(--c-surface) / <alpha-value>)",
+            surface2: "rgb(var(--c-surface2) / <alpha-value>)",
+            fg: "rgb(var(--c-fg) / <alpha-value>)",
+            fog: "rgb(var(--c-muted) / <alpha-value>)",
+            invbg: "rgb(var(--c-invbg) / <alpha-value>)",
+            invfg: "rgb(var(--c-invfg) / <alpha-value>)",
+            line: "var(--line)",
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+            sans: ['"Inter"', "system-ui", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
+</head>
+<body class="bg-base font-sans text-fg antialiased">
+
+  <!-- ===================== NAV ===================== -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+    <div id="nav-pill"
+         class="force-dark mx-auto max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/55 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-colors duration-300">
+      <nav class="flex items-center justify-between gap-4 px-4 py-2.5 sm:px-5 lg:px-6">
+        <a href="/" class="flex shrink-0 items-center" aria-label="Ignnitte — home">
+          <img src="/assets/ignnitte.png" alt="Ignnitte" class="h-14 w-auto object-contain md:h-16" />
+        </a>
+
+        <!-- desktop links -->
+        <div class="hidden flex-1 items-center justify-center gap-7 lg:flex">
+          {% for link in nav_links %}
+            {% if link.label == "Programs" %}
+              <div class="group relative">
+                <a href="{{ link.path }}"
+                   class="nav-link inline-flex items-center gap-1.5 {{ 'is-active' if active == link.path else '' }}">
+                  {{ link.label }}
+                  <svg viewBox="0 0 24 24" class="h-3 w-3 opacity-50 transition group-hover:opacity-100"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <div class="pointer-events-none absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                  <div class="rounded-2xl border border-fg/10 bg-base/90 p-2 backdrop-blur-xl">
+                    {% for item in ["IIoT","Robotics","AIoT","PLC & HMI","Industrial Automation","Cloud & GenAI"] %}
+                      <a href="/programs" class="block rounded-xl px-4 py-2.5 text-sm text-fog transition hover:bg-fg/10 hover:text-fg">{{ item }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <a href="{{ link.path }}"
+                 class="nav-link {{ 'is-active' if active == link.path else '' }}">{{ link.label }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="hidden shrink-0 items-center gap-5 lg:flex">
+          <a href="/register" class="rounded-full bg-fg px-5 py-2 text-sm font-semibold text-base transition hover:opacity-85">Register</a>
+          <button id="theme-toggle" class="theme-toggle hidden" aria-label="Toggle light / dark mode" title="Toggle theme">
+            <svg class="icon-moon h-4 w-4" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <svg class="icon-sun h-4 w-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+
+        <!-- mobile controls -->
+        <div class="flex items-center gap-2 lg:hidden">
+          <button id="theme-toggle-m" class="theme-toggle hidden" aria-label="Toggle light / dark mode">
+            <svg class="icon-moon h-4 w-4" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <svg class="icon-sun h-4 w-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <button id="menu-toggle" aria-label="Menu" class="grid h-10 w-10 place-items-center rounded-full border border-fg/15">
+            <svg viewBox="0 0 24 24" class="h-5 w-5"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- mobile drawer -->
+    <div id="mobile-menu"
+         class="force-dark mx-auto mt-2 hidden max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/90 px-5 py-6 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.7)] backdrop-blur-2xl lg:hidden">
+      <div class="grid gap-1">
+        {% for link in nav_links %}
+          <a href="{{ link.path }}" class="rounded-xl px-4 py-3 text-base {{ 'text-fg' if active == link.path else 'text-fog' }} hover:bg-fg/10">{{ link.label }}</a>
+        {% endfor %}
+        <div class="mt-3">
+          <a href="/register" class="block rounded-xl bg-fg px-4 py-3 text-center text-sm font-semibold text-base">Register</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="border-t border-line bg-base px-5 pb-10 pt-20 lg:px-10">
+    <div class="mx-auto max-w-[1400px]">
+      <div class="grid gap-14 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <img src="/assets/ignnitte.png" alt="Ignnitte" class="h-14 w-auto object-contain" />
+          <p class="mt-6 max-w-md text-[15px] leading-7 text-fog">
+            IGNNITTE is India's gateway to Industry 4.0, transforming learners into
+            industry-ready professionals through innovative skilling programs and
+            cutting-edge technology.
+          </p>
+          <p class="mt-8 text-xs uppercase tracking-[0.25em] text-fg/40">Powered by</p>
+          <p class="mt-2 text-sm text-fog">Impulse &nbsp;·&nbsp; PAL &nbsp;·&nbsp; GROK &nbsp;·&nbsp; SIBIC</p>
+        </div>
+
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-fg/40">Explore</p>
+          <ul class="mt-6 space-y-3 text-[15px] text-fog">
+            {% for link in nav_links %}
+              <li><a href="{{ link.path }}" class="transition hover:text-fg">{{ link.label }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-fg/40">Contact</p>
+          <ul class="mt-6 space-y-4 text-[15px] leading-7 text-fog">
+            <li>518, City Avenue, Near Phoenix Mall, Mumbai-Bengaluru Highway, Wakad, Pune - 411057</li>
+            <li><a href="tel:+917727877575" class="transition hover:text-fg">+91 7727877575</a></li>
+            <li><a href="mailto:info@ignnitte.com" class="transition hover:text-fg">info@ignnitte.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-xs text-fg/40 sm:flex-row">
+        <p>© {{ current_year }} IGNNITTE Skilling and Innovation LLP. All rights reserved.</p>
+        <p>Center of Excellence in Skilling &amp; Innovation</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    function setTheme(t) {
+      document.documentElement.classList.remove('dark', 'light');
+      document.documentElement.classList.add(t);
+      try { localStorage.setItem('ignnitte-theme', t); } catch (e) {}
+    }
+    function toggleTheme() {
+      const cur = document.documentElement.classList.contains('light') ? 'light' : 'dark';
+      setTheme(cur === 'light' ? 'dark' : 'light');
+    }
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+    document.getElementById('theme-toggle-m')?.addEventListener('click', toggleTheme);
+
+    // Deepen the floating nav pill once the page scrolls past the hero
+    const pill = document.getElementById('nav-pill');
+    const onScroll = () => {
+      pill.classList.toggle('bg-base/90', window.scrollY > 24);
+      pill.classList.toggle('bg-base/55', window.scrollY <= 24);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('reveal-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+  </script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

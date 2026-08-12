@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | Ignnitte{% endblock %}
+
+{% block content %}
+<section class="border-b border-line bg-base px-5 pt-32 pb-24 lg:px-10">
+  <div class="mx-auto max-w-[1400px]">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="eyebrow">Admin</p>
+        <h1 class="display mt-4 text-4xl sm:text-5xl">Website dashboard</h1>
+        <p class="mt-4 text-sm text-fog">Visitor analytics, registrations and contact submissions.</p>
+      </div>
+      <form method="post" action="/admin/logout">
+        <button type="submit" class="btn-ghost">
+          <span>Log out</span>
+          <svg viewBox="0 0 24 24" class="h-4 w-4"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- STAT TILES -->
+    <div class="mt-14 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line lg:grid-cols-3 xl:grid-cols-6">
+      {% for tile in [
+        ["Total visits", stats.total_visits],
+        ["Unique visitors", stats.unique_visitors],
+        ["Visits today", stats.visits_today],
+        ["Registrations", stats.total_registrations],
+        ["Opted in", stats.consented_count],
+        ["Contact messages", stats.total_contacts]
+      ] %}
+      <div class="stat-card bg-surface">
+        <p class="eyebrow">{{ tile[0] }}</p>
+        <p class="stat-value mt-4 text-3xl">{{ tile[1] }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="mt-16 grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+      <div class="bg-surface p-8">
+        <h2 class="display text-xl">Visits — last 14 days</h2>
+        <div class="mt-8 grid gap-4">
+          {% if daily_stats %}
+            {% set max_visits = (daily_stats | max(attribute='visits')).visits %}
+            {% for d in daily_stats %}
+            <div class="bar-row">
+              <span class="text-xs text-fog">{{ d.day[5:] }}</span>
+              <div class="bar-track"><div class="bar-fill" style="width: {{ (d.visits / max_visits * 100) if max_visits else 0 }}%"></div></div>
+              <span class="text-right text-xs text-fog">{{ d.visits }}</span>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-sm text-fog">No visit data yet.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="bg-surface p-8">
+        <h2 class="display text-xl">Top pages</h2>
+        <div class="mt-8 grid gap-4">
+          {% if top_pages %}
+            {% set max_page_visits = (top_pages | max(attribute='visits')).visits %}
+            {% for p in top_pages %}
+            <div class="bar-row">
+              <span class="truncate text-xs text-fog" title="{{ p.path }}">{{ p.path }}</span>
+              <div class="bar-track"><div class="bar-fill" style="width: {{ (p.visits / max_page_visits * 100) if max_page_visits else 0 }}%"></div></div>
+              <span class="text-right text-xs text-fog">{{ p.visits }}</span>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-sm text-fog">No visit data yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-px grid gap-px overflow-hidden border-x border-b border-line bg-line lg:grid-cols-2">
+      <div class="bg-surface p-8">
+        <h2 class="display text-xl">Registrations by program track</h2>
+        <div class="mt-8 grid gap-4">
+          {% if program_rows %}
+            {% set max_program = (program_rows | max(attribute='count')).count %}
+            {% for p in program_rows %}
+            <div class="bar-row">
+              <span class="truncate text-xs text-fog" title="{{ p.program }}">{{ p.program }}</span>
+              <div class="bar-track"><div class="bar-fill" style="width: {{ (p.count / max_program * 100) if max_program else 0 }}%"></div></div>
+              <span class="text-right text-xs text-fog">{{ p.count }}</span>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-sm text-fog">No registrations yet.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="bg-surface p-8">
+        <h2 class="display text-xl">Registrations by gender</h2>
+        <div class="mt-8 grid gap-4">
+          {% if gender_rows %}
+            {% set max_gender = (gender_rows | max(attribute='count')).count %}
+            {% for gr in gender_rows %}
+            <div class="bar-row">
+              <span class="truncate text-xs text-fog" title="{{ gr.gender }}">{{ gr.gender }}</span>
+              <div class="bar-track"><div class="bar-fill" style="width: {{ (gr.count / max_gender * 100) if max_gender else 0 }}%"></div></div>
+              <span class="text-right text-xs text-fog">{{ gr.count }}</span>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="text-sm text-fog">No registrations yet.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- REGISTRATIONS TABLE -->
+    <div class="mt-16">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="display text-2xl">Student registrations</h2>
+        <a href="/admin/export/registrations.csv" class="neura-box-link text-sm">
+          <span>Export CSV</span>
+          <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+      <div class="admin-table-wrap mt-6">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th><th>Name</th><th>Email</th><th>Contact</th><th>Gender</th>
+              <th>College</th><th>Department</th><th>Year</th><th>CGPA</th>
+              <th>Program interest</th><th>Consent</th><th>Registered at</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in registrations %}
+            <tr>
+              <td>{{ r.id }}</td>
+              <td>{{ r.name }}</td>
+              <td>{{ r.email }}</td>
+              <td>{{ r.contact }}</td>
+              <td>{{ r.gender or '—' }}</td>
+              <td>{{ r.college }}</td>
+              <td>{{ r.department }}</td>
+              <td>{{ r.year_of_study or '—' }}</td>
+              <td>{{ r.cgpa or '—' }}</td>
+              <td>{{ r.program_interest or '—' }}</td>
+              <td>{{ 'Yes' if r.consent else 'No' }}</td>
+              <td>{{ r.registered_at[:19] | replace('T', ' ') }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="12" class="text-center text-fog">No registrations yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CONTACT SUBMISSIONS TABLE -->
+    <div class="mt-16">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="display text-2xl">Contact us submissions</h2>
+        <a href="/admin/export/contacts.csv" class="neura-box-link text-sm">
+          <span>Export CSV</span>
+          <span class="neura-box"><svg viewBox="0 0 24 24" class="h-3.5 w-3.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+      <div class="admin-table-wrap mt-6">
+        <table class="admin-table">
+          <thead>
+            <tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Inquiry</th><th>Submitted at</th></tr>
+          </thead>
+          <tbody>
+            {% for c in contacts %}
+            <tr>
+              <td>{{ c.id }}</td>
+              <td>{{ c.name }}</td>
+              <td>{{ c.email }}</td>
+              <td>{{ c.phone }}</td>
+              <td>{{ c.inquiry }}</td>
+              <td>{{ c.submitted_at[:19] | replace('T', ' ') }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="6" class="text-center text-fog">No contact submissions yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
