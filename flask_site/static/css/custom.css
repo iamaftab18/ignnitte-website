@@ -637,6 +637,23 @@ html.light .aurora-blob {
 }
 .li-post__cta-link:hover { gap: 0.85rem; }
 
+/* ---------- Torn-paper logo badge (navbar) ---------- */
+.nav-logo-torn {
+  position: relative;
+  overflow: hidden;
+}
+.nav-logo-torn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #ffffff;
+  clip-path: polygon(
+    0 0, 68% 0, 60% 6%, 74% 12%, 56% 19%, 70% 26%, 52% 34%, 67% 42%,
+    50% 50%, 65% 58%, 48% 66%, 63% 74%, 46% 82%, 61% 90%, 44% 100%, 0 100%
+  );
+}
+
 /* ---------- Utilities ---------- */
 .hairline { height: 1px; background: var(--line); }
 .text-balance { text-wrap: balance; }
