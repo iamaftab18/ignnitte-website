@@ -53,13 +53,11 @@
   <!-- ===================== NAV ===================== -->
   <header id="site-header" class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
     <div id="nav-pill"
-         class="force-dark mx-auto max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/55 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-colors duration-300">
+         class="force-light mx-auto max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/55 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.25)] backdrop-blur-2xl transition-colors duration-300">
       <nav class="flex items-center justify-between gap-4 px-4 py-2.5 sm:px-5 lg:px-6">
-        <div class="nav-logo-torn -my-2.5 -ml-4 flex w-[230px] shrink-0 items-end self-stretch rounded-l-[26px] pb-3 pl-7 sm:-ml-5 sm:w-[270px] lg:-ml-6 lg:w-[310px]">
-          <a href="/" class="relative z-[1] flex items-center" aria-label="Ignnitte — home">
-            <img src="/assets/ignnitte.png" alt="Ignnitte" class="h-14 w-auto object-contain md:h-16" />
-          </a>
-        </div>
+        <a href="/" class="flex shrink-0 items-center" aria-label="Ignnitte — home">
+          <img src="/assets/ignnitte.png" alt="Ignnitte" class="h-12 w-auto object-contain md:h-14" />
+        </a>
 
         <!-- desktop links -->
         <div class="hidden flex-1 items-center justify-center gap-7 lg:flex">
@@ -100,7 +98,7 @@
             <svg class="icon-moon h-4 w-4" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             <svg class="icon-sun h-4 w-4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </button>
-          <button id="menu-toggle" aria-label="Menu" class="grid h-10 w-10 place-items-center rounded-full border border-fg/15">
+          <button id="menu-toggle" aria-label="Menu" class="grid h-10 w-10 place-items-center rounded-full border border-fg/15 text-fg">
             <svg viewBox="0 0 24 24" class="h-5 w-5"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </button>
         </div>
@@ -109,7 +107,7 @@
 
     <!-- mobile drawer -->
     <div id="mobile-menu"
-         class="force-dark mx-auto mt-2 hidden max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/90 px-5 py-6 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.7)] backdrop-blur-2xl lg:hidden">
+         class="force-light mx-auto mt-2 hidden max-w-[1360px] rounded-[26px] border border-fg/10 bg-base/90 px-5 py-6 shadow-[0_10px_40px_-14px_rgba(0,0,0,0.25)] backdrop-blur-2xl lg:hidden">
       <div class="grid gap-1">
         {% for link in nav_links %}
           <a href="{{ link.path }}" class="rounded-xl px-4 py-3 text-base {{ 'text-fg' if active == link.path else 'text-fog' }} hover:bg-fg/10">{{ link.label }}</a>

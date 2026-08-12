@@ -45,6 +45,19 @@ html.light {
   --line: rgba(255, 255, 255, 0.18);
 }
 
+/* Force a light palette locally (used for the navbar) */
+.force-light {
+  --c-base: 255 255 255;
+  --c-surface: 245 245 247;
+  --c-fg: 12 12 14;
+  --c-muted: 88 88 97;
+  --c-invbg: 12 12 14;
+  --c-invfg: 255 255 255;
+  --c-danger: 185 28 28;
+  --c-success: 21 128 61;
+  --line: rgba(0, 0, 0, 0.14);
+}
+
 html, body { background: rgb(var(--c-base)); }
 body { transition: background-color 0.35s ease, color 0.35s ease; }
 
@@ -637,19 +650,6 @@ html.light .aurora-blob {
 }
 .li-post__cta-link:hover { gap: 0.85rem; }
 
-/* ---------- Torn-paper logo badge (navbar) ---------- */
-.nav-logo-torn {
-  position: relative;
-  overflow: hidden;
-}
-.nav-logo-torn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: #ffffff;
-  clip-path: polygon(0 0, 50% 100%, 0 100%);
-}
 
 /* ---------- Utilities ---------- */
 .hairline { height: 1px; background: var(--line); }
