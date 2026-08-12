@@ -176,10 +176,13 @@
     </div>
 
     <div class="mt-12 grid grid-cols-2 gap-px overflow-hidden border border-line bg-line sm:mt-16 lg:grid-cols-4" data-reveal>
-      {% for stat in [["20+","Hands-on Projects"],["5+","Industry Labs"],["150+","Practical Hours"],["100%","Hands-on Learning"]] %}
-      <div class="bg-surface px-4 py-8 text-center sm:px-6 sm:py-12">
-        <p class="display text-3xl sm:text-4xl lg:text-5xl">{{ stat[0] }}</p>
-        <p class="mt-2 text-xs text-fog sm:mt-3 sm:text-sm">{{ stat[1] }}</p>
+      {% for stat in [["20+","Hands-on Projects","56,189,248"],["5+","Industry Labs","167,139,250"],["150+","Practical Hours","74,222,128"],["100%","Hands-on Learning","251,146,60"]] %}
+      <div class="stat-neon bg-surface px-4 py-8 text-center sm:px-6 sm:py-12" style="--accent: {{ stat[2] }};">
+        <span class="stat-neon__sheen" aria-hidden="true"></span>
+        <span class="stat-neon__corner stat-neon__corner--tl" aria-hidden="true"></span>
+        <span class="stat-neon__corner stat-neon__corner--br" aria-hidden="true"></span>
+        <p class="display stat-neon__value text-3xl sm:text-4xl lg:text-5xl">{{ stat[0] }}</p>
+        <p class="stat-neon__label mt-2 text-xs text-fog sm:mt-3 sm:text-sm">{{ stat[1] }}</p>
       </div>
       {% endfor %}
     </div>
